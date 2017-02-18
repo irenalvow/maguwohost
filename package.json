@@ -1,0 +1,33 @@
+{
+  "name": "trigen-frontend-boilerplate",
+  "version": "0.1.0",
+  "description": "Boilerplate for frontend development.",
+  "main": "gulpfile.js",
+  "repository": "https://github.com/TrigenSoftware/trigen-frontend-boilerplate",
+  "author": "dangreen",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.6"
+  },
+  "devDependencies": {
+    "eslint-config-trigen": "^1.1.1",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cli": "^1.2.2",
+    "gulp-connect": "^5.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-html-linter": "^1.0.0",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-progressive-css": "^1.0.3",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-srcset": "^1.0.1",
+    "gulp-stylelint": "^3.8.0",
+    "gulp-util": "^3.0.8",
+    "htmllint-config-trigen": "^1.0.0",
+    "sass-import-modules": "^2.1.0",
+    "stylelint-config-trigen": "^1.2.1"
+  }
+}

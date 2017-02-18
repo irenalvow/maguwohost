@@ -1,0 +1,10 @@
+
+$footer-background-color: silver;
+$footer-text-color: white;
+
+footer {
+	display: block;
+	background: $footer-background-color;
+	height: 20vh;
+	color: $footer-text-color;
+}
