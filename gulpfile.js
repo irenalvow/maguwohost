@@ -19,7 +19,9 @@ const gulp  = require('gulp'),
     csso      = require('gulp-cssnano'),
     auto      = require('gulp-autoprefixer'),
     sass      = require('gulp-sass'),
-    styleLint = require('gulp-stylelint');
+    styleLint = require('gulp-stylelint'),
+
+    pkg = require('./package.json');
 
 /**
  * Notify proxy
@@ -80,7 +82,7 @@ function reportError(error) {
  * Configs
  */
 
-const browsers = '> 1%, last 2 versions, iOS > 7, Android > 4.4, not OperaMini all';
+const { browsers } = pkg;
 
 const paths = {
 	html:   'src/**.html',
