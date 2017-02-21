@@ -1,13 +1,17 @@
 /**
+ * Gulpfile.js with tasks for frontend JavaScript development.
+ */
+
+/**
  * Requirements
  */
 
-const gulp  = require('gulp'),
+const { notify, reportError, extendGulpConnect } = require('./helpers'),
+	gulp    = require('gulp'),
 	gutil   = require('gulp-util'),
 	replace = require('gulp-replace'),
-    sm      = require('gulp-sourcemaps'),
-    connect = require('gulp-connect')
-	notify_ = require('gulp-notify'),
+	sm      = require('gulp-sourcemaps'),
+	connect = require('gulp-connect'),
 
 	procss   = require('gulp-progressive-css'),
 	htmlmin  = require('gulp-htmlmin'),
@@ -15,68 +19,19 @@ const gulp  = require('gulp'),
 
 	srcset = require('gulp-srcset'),
 
-    importer  = require('sass-import-modules'),
-    csso      = require('gulp-cssnano'),
-    auto      = require('gulp-autoprefixer'),
-    sass      = require('gulp-sass'),
-    styleLint = require('gulp-stylelint'),
+	importer  = require('sass-import-modules'),
+	csso      = require('gulp-cssnano'),
+	auto      = require('gulp-autoprefixer'),
+	sass      = require('gulp-sass'),
+	styleLint = require('gulp-stylelint'),
 
-    pkg = require('./package.json');
+	webpack = require('webpack'),
+	esLint  = require('gulp-eslint'),
 
-/**
- * Notify proxy
- */
+	pkg = require('./package.json'),
+	wpk = require('./webpack.config');
 
-function notify(message, now) {
-
-	if (now) {
-
-		const notification = notify(message);
-
-		notification._transform(true, null, () => 1);
-		notification._flush(() => 1);
-
-		return;
-	}
-
-    return notify_({
-        message: message,
-        sound:   'Glass',
-        onLast:  true
-    });
-}
-
-notify.onError = notify_.onError('Error: <%= error.message %>');
-
-/**
- * Error reporter helper
- */
-
-function reportError(error) {
-
-	notify.onError(error);
-	
-	let errorString = error.toString(),
-		errorStack  = error.stack;
-
-	if (!/\n$/.test(errorString)) {
-		errorString += '\n';
-	}
-
-	process.stderr.write(errorString);
-
-	if (errorStack) {
-
-		if (!/\n$/.test(errorStack)) {
-			errorStack += '\n';
-		}
-
-		process.stderr.write(errorStack);
-	}
-
-	process.exitCode = 1;
-	this.emit('end');
-}
+extendGulpConnect(connect);
 
 /**
  * Configs
@@ -85,9 +40,13 @@ function reportError(error) {
 const { browsers } = pkg;
 
 const paths = {
-	html:   'src/**.html',
-	images: 'src/**/*.{jpg,webp,png,svg,gif}',
-	styles: 'src/**/*.scss'
+	html:    'src/*.html',
+	images:  'src/images/**/*.{jpg,webp,png,svg,gif}',
+	styles:  'src/app/**/*.scss',
+	scripts: [
+		'src/app/main.js',
+		'src/app/**/*.js'
+	]
 };
 
 /**
@@ -141,7 +100,7 @@ gulp.task('images:dev', () =>
 		}, {
 			match:  '**/*.png'
 		}]))
-		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('dist/images'))
 		.pipe(connect.reload())
 		.pipe(notify('Images are updated.'))
 );
@@ -154,7 +113,7 @@ gulp.task('images:build', () =>
 		}, {
 			match:  '**/*.png'
 		}]))
-		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('dist/images'))
 		.pipe(notify('Images are generated.'))
 );
 
@@ -170,7 +129,7 @@ gulp.task('style:watch', (done) => {
 gulp.task('style:lint', () =>
 	gulp.src(paths.styles)
 		.pipe(styleLint({
-			reporters: [{ formatter: 'string', console: true }],
+			reporters:      [{ formatter: 'string', console: true }],
 			failAfterError: true
 		}))
 		.on('error', reportError)
@@ -183,7 +142,7 @@ gulp.task('style:dev', gulp.parallel('style:lint', () =>
 			.on('error', reportError)
 			.pipe(auto({ browsers }))
 		.pipe(sm.write())
-		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('dist/images'))
 		.pipe(connect.reload())
 		.pipe(notify('Styles are updated.'))
 ));
@@ -197,8 +156,79 @@ gulp.task('style:build', gulp.series('style:lint', () =>
 			reduceIdents: false,
 			zindex:       false
 		}))
-		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest('dist/images'))
 		.pipe(notify('Styles are compiled.'))
+));
+
+/**
+ * Webpack compilers
+ */
+
+const webpackDevCompiler = webpack(wpk.dev(paths.scripts[0], 'dist/app')),
+	webpackBuildCompiler = webpack(wpk.build(paths.scripts[0], 'dist/app'));
+
+/**
+ * JavaScript tasks
+ */
+
+gulp.task('script:watch', (done) => {
+	gulp.watch(paths.scripts, gulp.series('script:dev'));
+	done();
+});
+
+gulp.task('script:lint', () =>
+	gulp.src(paths.scripts)
+		.pipe(esLint())
+		.pipe(esLint.format())
+		.pipe(esLint.failAfterError())
+		.on('error', reportError)
+);
+
+gulp.task('script:dev', gulp.parallel('script:lint', done =>
+	webpackDevCompiler.run((error, stats) => {
+
+		if (error) {
+			notify.onError(error);
+			return done();
+		}
+
+		if (stats.hasErrors()) {
+			notify.onError(new Error('Webpack compilation is failed.'));
+		} else {
+			connect.changed(webpackDevCompiler.options.entry);
+			notify('Scripts are updated.', true);
+		}
+
+		gutil.log(`${gutil.colors.cyan('webpack')}:`, `\n${stats.toString({
+			chunks: false,
+			colors: true
+		})}`);
+
+		return done();
+	})
+));
+
+gulp.task('script:build', gulp.series('script:lint', done =>
+	webpackBuildCompiler.run((error, stats) => {
+
+		if (error) {
+			notify.onError(error);
+			return done();
+		}
+
+		if (stats.hasErrors()) {
+			notify.onError(new Error('Webpack compilation is failed.'));
+		} else {
+			notify('Scripts are updated.', true);
+		}
+
+		gutil.log(`${gutil.colors.cyan('webpack')}:`, `\n${stats.toString({
+			chunks: false,
+			colors: true
+		})}`);
+
+		return done();
+	})
 ));
 
 /**
@@ -208,7 +238,8 @@ gulp.task('style:build', gulp.series('style:lint', () =>
 gulp.task('watch', gulp.parallel(
 	'html:watch',
 	'images:watch',
-	'style:watch'
+	'style:watch',
+	'script:watch'
 ));
 
 gulp.task('server', (done) => {
@@ -220,12 +251,15 @@ gulp.task('server', (done) => {
 });
 
 gulp.task('dev', gulp.series(
-	gulp.parallel(
-		'html:dev',
-		'images:dev',
-		'style:dev'
-	),
 	'server',
+	gulp.parallel(
+		gulp.series(
+			'style:dev',
+			'html:dev'
+		),
+		'images:dev',
+		'script:dev'
+	),
 	'watch'
 ));
 
@@ -234,7 +268,8 @@ gulp.task('build', gulp.parallel(
 		'style:build',
 		'html:build'
 	),
-	'images:build'
+	'images:build',
+	'script:build'
 ));
 
 gulp.task('default', gulp.series('dev'));
