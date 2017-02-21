@@ -13,8 +13,8 @@ Boilerplate for frontend development.
 ├─┬ html:build
 │ └── html:lint
 ├── images:watch
-├── images:build
 ├── images:dev
+├── images:build
 ├── style:watch
 ├── style:lint
 ├─┬ style:dev
@@ -27,9 +27,9 @@ Boilerplate for frontend development.
 │ └── style:watch
 ├── server
 ├─┬ dev
-│ └─┬── html:build
-│   ├── images:build
-│   ├── style:build
+│ └─┬── html:dev
+│   ├── images:dev
+│   ├── style:dev
 │   ├── server
 │   └── watch
 ├─┬ build
