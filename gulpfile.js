@@ -1,5 +1,5 @@
 /**
- * Gulpfile.js with tasks for frontend JavaScript development.
+ * Gulpfile.js with tasks for frontend development.
  */
 
 /**
@@ -36,7 +36,12 @@ const { browsers } = pkg;
 const paths = {
 	html:   'src/*.html',
 	images: 'src/images/**/*.{jpg,webp,png,svg,gif}',
-	styles: 'src/app/**/*.scss'
+	styles: 'src/app/**/*.scss',
+	dest:   {
+		root:   'dist',
+		app:    'dist/app',
+		images: 'dist/images'
+	}
 };
 
 /**
@@ -58,7 +63,7 @@ gulp.task('html:lint', () =>
 
 gulp.task('html:dev', gulp.parallel('html:lint', () =>
 	gulp.src(paths.html)
-		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest(paths.dest.root))
 		.pipe(connect.reload())
 		.pipe(notify('HTML files are updated.'))
 ));
@@ -69,7 +74,7 @@ gulp.task('html:build', gulp.series('html:lint', () =>
 		.pipe(procss({ base: 'dist', useXHR: true }))
 		.pipe(htmlmin({ collapseWhitespace: true }))
 		.on('error', reportError)
-		.pipe(gulp.dest('dist'))
+		.pipe(gulp.dest(paths.dest.root))
 		.pipe(notify('HTML files are compiled.'))
 ));
 
@@ -90,7 +95,7 @@ gulp.task('images:dev', () =>
 		}, {
 			match:  '**/*.png'
 		}]))
-		.pipe(gulp.dest('dist/images'))
+		.pipe(gulp.dest(paths.dest.images))
 		.pipe(connect.reload())
 		.pipe(notify('Images are updated.'))
 );
@@ -103,7 +108,7 @@ gulp.task('images:build', () =>
 		}, {
 			match:  '**/*.png'
 		}]))
-		.pipe(gulp.dest('dist/images'))
+		.pipe(gulp.dest(paths.dest.images))
 		.pipe(notify('Images are generated.'))
 );
 
@@ -132,7 +137,7 @@ gulp.task('style:dev', gulp.parallel('style:lint', () =>
 			.on('error', reportError)
 			.pipe(auto({ browsers }))
 		.pipe(sm.write())
-		.pipe(gulp.dest('dist/images'))
+		.pipe(gulp.dest(paths.dest.app))
 		.pipe(connect.reload())
 		.pipe(notify('Styles are updated.'))
 ));
@@ -146,19 +151,13 @@ gulp.task('style:build', gulp.series('style:lint', () =>
 			reduceIdents: false,
 			zindex:       false
 		}))
-		.pipe(gulp.dest('dist/images'))
+		.pipe(gulp.dest(paths.dest.app))
 		.pipe(notify('Styles are compiled.'))
 ));
 
 /**
  * Main tasks
  */
-
-gulp.task('watch', gulp.parallel(
-	'html:watch',
-	'images:watch',
-	'style:watch'
-));
 
 gulp.task('server', (done) => {
 	connect.server({
@@ -167,6 +166,12 @@ gulp.task('server', (done) => {
 	});
 	done();
 });
+
+gulp.task('watch', gulp.parallel(
+	'html:watch',
+	'images:watch',
+	'style:watch'
+));
 
 gulp.task('dev', gulp.series(
 	'server',

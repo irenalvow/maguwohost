@@ -1,5 +1,6 @@
 
 $base-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$header-z-index: 1;
 
 // stylelint-disable-next-line selector-no-universal
 * {
@@ -24,6 +25,7 @@ header {
 	position: fixed;
 	right: 0;
 	left: 0;
+	z-index: $header-z-index;
 
 	> main {
 		height: 20vh;

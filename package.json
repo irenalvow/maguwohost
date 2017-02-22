@@ -1,6 +1,6 @@
 {
   "name": "trigen-frontend-boilerplate",
-  "version": "0.2.1",
+  "version": "0.4.0",
   "description": "Boilerplate for frontend development.",
   "main": "gulpfile.js",
   "repository": "https://github.com/TrigenSoftware/trigen-frontend-boilerplate",
@@ -8,6 +8,10 @@
   "license": "MIT",
   "engines": {
     "node": ">=6.4.0"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "test": "gulp html:lint && gulp style:lint"
   },
   "dependencies": {
     "bootstrap": "v4.0.0-alpha.6"

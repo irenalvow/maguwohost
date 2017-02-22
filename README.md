@@ -21,11 +21,11 @@ Boilerplate for frontend development.
 │ └── style:lint
 ├─┬ style:build
 │ └── style:lint
+├── server
 ├─┬ watch
 │ ├── html:watch
 │ ├── images:watch
 │ └── style:watch
-├── server
 ├─┬ dev
 │ └─┬── html:dev
 │   ├── images:dev
