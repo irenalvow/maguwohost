@@ -1,25 +1,7 @@
+@import 'bootstrap/scss/bootstrap-reboot';
+@import 'bootstrap/scss/bootstrap-grid';
 
-$base-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 $header-z-index: 1;
-
-// stylelint-disable-next-line selector-no-universal
-* {
-	box-sizing: border-box;
-}
-
-body {
-	margin: 0;
-	font-family: $base-font;
-}
-
-header, section, footer {
-
-	> main {
-		margin: 0 auto;
-		max-width: 900px;
-		overflow: hidden;
-	}
-}
 
 header {
 	position: fixed;

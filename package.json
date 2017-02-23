@@ -33,7 +33,7 @@
     "gulp-stylelint": "^3.8.0",
     "gulp-util": "^3.0.8",
     "htmllint-config-trigen": "^1.0.0",
-    "sass-import-modules": "^2.1.0",
+    "sass-modules-importer": "^1.0.1",
     "stylelint-config-trigen": "^1.2.1"
   },
   "browsers": "> 1%, last 2 versions, iOS > 7, Android > 4.4, not OperaMini all"
