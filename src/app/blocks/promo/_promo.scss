@@ -1,0 +1,27 @@
+
+.promo {
+	padding-top: 230px;
+	padding-bottom: 50px;
+
+	&__h1 {
+		letter-spacing: 2px;
+		color: $white;
+		font-family: $slabo;
+		font-size: 40px;
+		font-weight: normal;
+	}
+
+	&__h2 {
+		padding-top: 50px;
+		letter-spacing: 3px;
+		color: $white;
+		font-family: $roboto;
+		font-size: 30px;
+		font-weight: normal;
+	}
+
+	&__img {
+		padding-top: 65px;
+		padding-bottom: 30px;
+	}
+}

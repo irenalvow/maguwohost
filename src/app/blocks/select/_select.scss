@@ -1,0 +1,30 @@
+
+.select {
+	position: relative;
+	background-color: $yellow;
+
+	&:hover {
+		background-color: $lightsandybrown;
+	}
+
+	&__select {
+		$z-index: 2;
+		position: relative;
+		appearance: none;
+		z-index: $z-index;
+		border: none;
+		border-radius: 0;
+		background-color: $transparent;
+		padding: 0 25px 0 10px;
+		height: 100%;
+	}
+
+	&__chevron {
+		$z-index: 1;
+		position: absolute;
+		top: 53%;
+		right: 10px;
+		transform: translate(0, -50%);
+		z-index: $z-index;
+	}
+}

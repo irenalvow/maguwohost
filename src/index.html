@@ -2,27 +2,223 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Ttitle</title>
+		<title>MaguwoHost</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
 		<meta name="format-detection" content="telephone=no">
-		<link rel="stylesheet" priority="critical" href="app/critical.css?v=ASSETS_VERSION">
-		<link rel="stylesheet" priority="queued" href="app/content.css?v=ASSETS_VERSION">
-		<link rel="stylesheet" priority="queued" href="app/footer.css?v=ASSETS_VERSION">
+		<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,700|Slabo+27px|Raleway:600">
+		<link rel="stylesheet" href="app/main.css">
 	</head>
 	<body>
-		<header>
-			<main class="container">
-				<h1>Header</h1>
-			</main>
+		<header class="header">
+			<nav class="header-nav">
+				<div class="container clearfix">
+					<div class="header-nav__logo logo">
+						<img class="logo__img" src="images/logo.png" alt="MaguwoHost">
+					</div>
+					<ul class="header-nav__links nav-links">
+						<li class="nav-links__item">
+							<a class="nav-links__link" href="#">Home</a>
+						</li>
+						<li class="nav-links__item">
+							<a class="nav-links__link" href="#">About</a>
+						</li>
+						<li class="nav-links__item">
+							<a class="nav-links__link" href="#">Pricing</a>
+						</li>
+						<li class="nav-links__item">
+							<a class="nav-links__link" href="#">Domain</a>
+						</li>
+						<li class="nav-links__item">
+							<a class="nav-links__link" href="#">Hosting</a>
+						</li>
+					</ul>
+					<div class="header-nav__help help">
+						<p class="help__message">Do you need help? Just Email, Live chat or Call us</p>
+						<a class="help__btn btn" href="#">Live Chat</a>
+						<a class="help__tel" href="tel:62846534">6284-6534</a>
+					</div>
+				</div>
+			</nav>
+			<div class="header-features">
+				<div class="container header-features__container">
+					<div class="promo">
+						<h1 class="promo__h1">Just a Professional Web Hosting Services</h1>
+						<h2 class="promo__h2">modern - fast - reliable</h2>
+						<img class="promo__img" src="images/header-bg-logo.png" alt="bg-logo">
+					</div>
+					<div class="domain">
+						<div class="domain__content">
+							<input class="domain__input" type="text" name="domain" placeholder="You Domain Name...">
+							<span class="domain__select select">
+								<select class="select__select" name="topic">
+									<option value="1">.com</option>
+									<option value="2">.su</option>
+									<option value="3">.ru</option>
+								</select>
+								<i class="select__chevron ion-ios-arrow-down"></i>
+							</span>
+							<a class="btn domain__btn" href="#">Check Availability</a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</header>
-		<section>
+		<section class="services">
 			<main class="container">
-				<h1>Section</h1>
+				<div class="row">
+					<div class="services__webhost col-md-6">
+						<img src="images/icon-server.png" alt="server">
+						<h1 class="services__title">#1 Webhost Services</h1>
+						<p class="services__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+						<a class="btn btn--empty btn--big" href="#">More</a>
+					</div>
+					<div class="services__domain col-md-6">
+						<figure class="services__com">.com</figure>
+						<h1 class="services__title">#1 Domain Services</h1>
+						<p class="services__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+						<a class="btn btn--empty btn--big" href="#">More</a>
+					</div>
+				</div>
 			</main>
 		</section>
-		<footer>
+		<section class="features">
 			<main class="container">
-				<h1>Footer</h1>
+				<h1 class="features__title">Our Features</h1>
+				<h2 class="features__subtitle">Our Best Features</h2>
+				<div class="row">
+					<div class="features__item col-md-3">
+						<img src="images/feature-1.png" alt="images/feature-1.png">
+						<hr class="features__hr">
+						<h3 class="features__item-title">Live Support</h3>
+						<p class="features__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.</p>
+					</div>
+					<div class="features__item col-md-3">
+						<img src="images/feature-2.png" alt="images/feature-2.png">
+						<hr class="features__hr">
+						<h3 class="features__item-title">Cloud Technology</h3>
+						<p class="features__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.</p>
+					</div>
+					<div class="features__item col-md-3">
+						<img src="images/feature-3.png" alt="images/feature-3.png">
+						<hr class="features__hr">
+						<h3 class="features__item-title">Hi Tech Database</h3>
+						<p class="features__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.</p>
+					</div>
+					<div class="features__item col-md-3">
+						<img src="images/feature-4.png" alt="images/feature-4.png">
+						<hr class="features__hr">
+						<h3 class="features__item-title">Live Monitoring</h3>
+						<p class="features__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet.</p>
+					</div>
+				</div>
+			</main>
+		</section>
+		<section class="clients">
+			<main class="container">
+				<div class="row">
+					<div class="col-md-4">
+						<h1 class="clients__title">Our Clients</h1>
+						<p class="clients__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum.</p>
+					</div>
+					<div class="col-md-2">
+						<img class="clients__item" src="images/client-1.png" alt="item-1">
+					</div>
+					<div class="col-md-2">
+						<img class="clients__item" src="images/client-2.png" alt="item-1">
+					</div>
+					<div class="col-md-2">
+						<img class="clients__item" src="images/client-3.png" alt="item-1">
+					</div>
+					<div class="col-md-2">
+						<img class="clients__item" src="images/client-4.png" alt="item-1">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<blockquote class="review">
+							<p class="review__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+							<cite class="review__author">Anna</cite>
+							<img class="review__author-photo" src="images/photo-client.png" alt="Reviewer photo">
+						</blockquote>
+					</div>
+					<div class="col-md-4">
+						<blockquote class="review">
+							<p class="review__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+							<cite class="review__author">Anna</cite>
+							<img class="review__author-photo" src="images/photo-client.png" alt="Reviewer photo">
+						</blockquote>
+					</div>
+					<div class="col-md-4">
+						<blockquote class="review">
+							<p class="review__text">This is Photoshop's version  of Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+							<cite class="review__author">Anna</cite>
+							<img class="review__author-photo" src="images/photo-client.png" alt="Reviewer photo">
+						</blockquote>
+					</div>
+				</div>
+			</main>
+		</section>
+		<section class="plans-pricing">
+			<main class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="plans-pricing__question-container">
+							<h1 class="plans-pricing__h1">Do you want to view Plans &#38; Pricing?</h1>
+							<p class="plans-pricing__text">Follow the button in the right section.</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="plans-pricing__button-container">
+							<a class="plans-pricing__button btn btn--big" href="#">Plans &#38; Pricing</a>
+						</div>
+					</div>
+				</div>
+			</main>
+		</section>
+		<footer class="footer">
+			<main class="container">
+				<div class="row">
+					<div class="col-md-9">
+						<img src="images/map.png" alt="map">
+					</div>
+					<div class="footer__nav col-md-3">
+						<h3 class="footer__title">Navigation</h3>
+						<ul class="footer__nav-list">
+							<li class="footer__nav-item">
+								<a class="footer__link" href="#">Home</a>
+							</li>
+							<li class="footer__nav-item">
+								<a class="footer__link" href="#">About</a>
+							</li>
+							<li class="footer__nav-item">
+								<a class="footer__link" href="#">Domain</a>
+							</li>
+							<li class="footer__nav-item">
+								<a class="footer__link" href="#">Hosting</a>
+							</li>
+							<li class="footer__nav-item">
+								<a class="footer__link" href="#">Contact</a>
+							</li>
+						</ul>
+						<div class="footer__social">
+							<a class="footer__social-link" href="#">
+								<i class="ion-social-twitter"></i>
+							</a>
+							<a class="footer__social-link" href="#">
+								<i class="ion-social-instagram-outline"></i>
+							</a>
+							<a class="footer__social-link" href="#">
+								<i class="ion-social-googleplus-outline"></i>
+							</a>
+						</div>
+						<a class="footer__link footer__back-to-top" href="#">Back to Top</a>
+					</div>
+				</div>
+				<div class="footer__copyright">
+					<img class="footer__copyright-icon" src="images/footer-logo.png" alt="footer-logo">
+					Copyright 2014 Maguwohost by FikriStudio
+				</div>
 			</main>
 		</footer>
 	</body>

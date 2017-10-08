@@ -1,0 +1,40 @@
+
+.review {
+	background-color: $darkwhite;
+	padding: 15px;
+
+	&__text {
+		letter-spacing: .5px;
+		color: $darkgray;
+		font-family: $roboto;
+		font-size: 13px;
+		font-style: italic;
+
+		&::before {
+			content: '\201c';
+		}
+
+		&::after {
+			content: '\201d';
+		}
+	}
+
+	&__author {
+		color: $dimgray;
+		font-weight: bold;
+		font-style: normal;
+
+		&::before {
+			margin-right: 2px;
+			margin-left: 10px;
+			content: '-';
+		}
+	}
+
+	&__author-photo {
+		float: right;
+		margin-top: -15px;
+		border: 5px solid $lightsilver;
+		border-radius: 50%;
+	}
+}

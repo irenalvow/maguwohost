@@ -1,0 +1,18 @@
+
+.header-nav {
+	background-color: $white;
+
+	&__logo {
+		float: left;
+		margin-right: 33px;
+	}
+
+	&__links {
+		float: left;
+		border-right: 1px solid $lightgray;
+	}
+
+	&__help {
+		float: right;
+	}
+}

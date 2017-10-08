@@ -1,0 +1,38 @@
+
+.features {
+	background-color: $seashell;
+	background-image: url('../images/feature-logo.png');
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	padding: 100px 0;
+	text-align: center;
+
+	&__title {
+		margin-bottom: 25px;
+		font-size: 45px;
+	}
+
+	&__subtitle {
+		font-weight: normal;
+	}
+
+	&__item {
+		padding-top: 80px;
+	}
+
+	&__hr {
+		margin: 30px auto;
+		border: 0;
+		background: $dimgray;
+		width: 70px;
+		height: 3px;
+	}
+
+	&__item-title {
+		margin-bottom: 30px;
+		color: $gold;
+		font-family: $slabo;
+		font-size: 30px;
+		font-weight: normal;
+	}
+}

@@ -1,0 +1,23 @@
+
+.domain {
+	display: inline-block;
+	background-color: rgba(white, .5);
+	padding: 13px;
+
+	&__content {
+		display: flex;
+	}
+
+	&__input {
+		border: none;
+		padding-left: 18px;
+		width: 200px;
+		color: $lightblack;
+		font-family: $roboto;
+		font-size: 15px;
+	}
+
+	&__btn {
+		margin: 0;
+	}
+}
